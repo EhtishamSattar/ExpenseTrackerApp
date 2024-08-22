@@ -8,11 +8,42 @@
 import SwiftUI
 
 struct AddCategoryView: View {
+    @Environment(\.presentationMode) var mode
+    @Binding var categories : [String]
+    @State var category : String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            TextField("Select Category", text: $category)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(5)
+            HStack{
+                Button {
+                    mode.wrappedValue.dismiss()
+                } label: {
+                    Text("Cancel")
+                }
+                .buttonStyle(BorderedButtonStyle())
+                
+                Button  {
+                    categories.append(category)
+                    mode.wrappedValue.dismiss()
+                } label: {
+                    Text("OK")
+                }
+                .buttonStyle(BorderedButtonStyle())
+
+
+            }
+        }
+        .padding()
+        
     }
 }
 
-#Preview {
-    AddCategoryView()
+struct AddCategoryView_Previews: PreviewProvider {
+    @State static var categories = ["Food", "Transport", "Shopping"]
+    
+    static var previews: some View {
+        AddCategoryView(categories: $categories)
+    }
 }

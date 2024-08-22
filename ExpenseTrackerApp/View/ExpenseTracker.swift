@@ -8,8 +8,34 @@
 import SwiftUI
 
 struct ExpenseTracker: View {
+    
+    //Setting theme Color for Tabbar Items
+    init() {
+        let appearance = UITabBarAppearance()
+        appearance.stackedLayoutAppearance.selected.iconColor = UIColor(named: "ThemeColor")
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor(named: "ThemeColor") ?? UIColor.black]
+        
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                
+                CategoryView()
+                    .tabItem {
+                        Label("Category", systemImage: "list.bullet")
+                        
+                    }
+            }
+        }
+        
     }
 }
 

@@ -1,18 +1,29 @@
-//
-//  CategoryView.swift
-//  ExpenseTrackerApp
-//
-//  Created by Mac on 22/08/2024.
-//
-
 import SwiftUI
 
 struct CategoryView: View {
+    @State private var categories = ["Food", "Transport", "Shopping"] // Sample categories
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(categories, id: \.self) { category in
+                    Text(category)
+                }
+            }
+            .navigationTitle("Categories")
+            .overlay(
+                NavigationLink(destination: {
+                    AddCategoryView(categories: $categories)
+                }, label: {
+                    CircularPlusButton()
+                        .padding()
+                }),
+                alignment: .bottomTrailing // Move alignment here, outside the closure
+            )
+        }
     }
 }
 
-#Preview {
+#Preview{
     CategoryView()
 }

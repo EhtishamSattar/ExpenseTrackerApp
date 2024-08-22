@@ -8,17 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		049CCE1B2C771AAF001AA1C8 /* ExpenseTrackerAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE1A2C771AAF001AA1C8 /* ExpenseTrackerAppApp.swift */; };
-		049CCE1D2C771AAF001AA1C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE1C2C771AAF001AA1C8 /* ContentView.swift */; };
 		049CCE1F2C771AB4001AA1C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049CCE1E2C771AB4001AA1C8 /* Assets.xcassets */; };
 		049CCE222C771AB4001AA1C8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049CCE212C771AB4001AA1C8 /* Preview Assets.xcassets */; };
+		049CCE2C2C771B71001AA1C8 /* ExpenseTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE2B2C771B71001AA1C8 /* ExpenseTracker.swift */; };
+		049CCE2E2C771F84001AA1C8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE2D2C771F83001AA1C8 /* HomeView.swift */; };
+		049CCE312C772003001AA1C8 /* CircularPlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE302C772003001AA1C8 /* CircularPlusButton.swift */; };
+		049CCE332C772029001AA1C8 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE322C772029001AA1C8 /* CategoryView.swift */; };
+		049CCE352C772B0E001AA1C8 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE342C772B0E001AA1C8 /* AddExpenseView.swift */; };
+		049CCE372C772BE2001AA1C8 /* ExpenseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE362C772BE2001AA1C8 /* ExpenseCardView.swift */; };
+		049CCE392C773DE2001AA1C8 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE382C773DE2001AA1C8 /* AddCategoryView.swift */; };
+		049CCE3D2C774938001AA1C8 /* ExpenseTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE3C2C774938001AA1C8 /* ExpenseTracker.swift */; };
+		049CCE3F2C7749E9001AA1C8 /* ExpenseTrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE3E2C7749E9001AA1C8 /* ExpenseTrackerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		049CCE172C771AAF001AA1C8 /* ExpenseTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049CCE1A2C771AAF001AA1C8 /* ExpenseTrackerAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerAppApp.swift; sourceTree = "<group>"; };
-		049CCE1C2C771AAF001AA1C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		049CCE1E2C771AB4001AA1C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		049CCE212C771AB4001AA1C8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		049CCE2B2C771B71001AA1C8 /* ExpenseTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTracker.swift; sourceTree = "<group>"; };
+		049CCE2D2C771F83001AA1C8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		049CCE302C772003001AA1C8 /* CircularPlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularPlusButton.swift; sourceTree = "<group>"; };
+		049CCE322C772029001AA1C8 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		049CCE342C772B0E001AA1C8 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		049CCE362C772BE2001AA1C8 /* ExpenseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCardView.swift; sourceTree = "<group>"; };
+		049CCE382C773DE2001AA1C8 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
+		049CCE3C2C774938001AA1C8 /* ExpenseTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTracker.swift; sourceTree = "<group>"; };
+		049CCE3E2C7749E9001AA1C8 /* ExpenseTrackerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +67,11 @@
 		049CCE192C771AAF001AA1C8 /* ExpenseTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
+				049CCE2F2C771FE3001AA1C8 /* Utilities */,
+				049CCE2A2C771B36001AA1C8 /* ViewModel */,
+				049CCE292C771B24001AA1C8 /* View */,
+				049CCE282C771B12001AA1C8 /* Model */,
 				049CCE1A2C771AAF001AA1C8 /* ExpenseTrackerAppApp.swift */,
-				049CCE1C2C771AAF001AA1C8 /* ContentView.swift */,
 				049CCE1E2C771AB4001AA1C8 /* Assets.xcassets */,
 				049CCE202C771AB4001AA1C8 /* Preview Content */,
 			);
@@ -65,6 +84,43 @@
 				049CCE212C771AB4001AA1C8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		049CCE282C771B12001AA1C8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				049CCE3C2C774938001AA1C8 /* ExpenseTracker.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		049CCE292C771B24001AA1C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				049CCE2B2C771B71001AA1C8 /* ExpenseTracker.swift */,
+				049CCE2D2C771F83001AA1C8 /* HomeView.swift */,
+				049CCE322C772029001AA1C8 /* CategoryView.swift */,
+				049CCE342C772B0E001AA1C8 /* AddExpenseView.swift */,
+				049CCE362C772BE2001AA1C8 /* ExpenseCardView.swift */,
+				049CCE382C773DE2001AA1C8 /* AddCategoryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		049CCE2A2C771B36001AA1C8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				049CCE3E2C7749E9001AA1C8 /* ExpenseTrackerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		049CCE2F2C771FE3001AA1C8 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				049CCE302C772003001AA1C8 /* CircularPlusButton.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +193,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				049CCE1D2C771AAF001AA1C8 /* ContentView.swift in Sources */,
+				049CCE312C772003001AA1C8 /* CircularPlusButton.swift in Sources */,
+				049CCE372C772BE2001AA1C8 /* ExpenseCardView.swift in Sources */,
+				049CCE392C773DE2001AA1C8 /* AddCategoryView.swift in Sources */,
+				049CCE2E2C771F84001AA1C8 /* HomeView.swift in Sources */,
 				049CCE1B2C771AAF001AA1C8 /* ExpenseTrackerAppApp.swift in Sources */,
+				049CCE352C772B0E001AA1C8 /* AddExpenseView.swift in Sources */,
+				049CCE2C2C771B71001AA1C8 /* ExpenseTracker.swift in Sources */,
+				049CCE3D2C774938001AA1C8 /* ExpenseTracker.swift in Sources */,
+				049CCE3F2C7749E9001AA1C8 /* ExpenseTrackerViewModel.swift in Sources */,
+				049CCE332C772029001AA1C8 /* CategoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +343,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,6 +372,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,18 +1,19 @@
-//
-//  CircularPlusButton.swift
-//  ExpenseTrackerApp
-//
-//  Created by Mac on 22/08/2024.
-//
-
 import SwiftUI
 
 struct CircularPlusButton: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Image(systemName: "plus")
+            .resizable()
+            .frame(width: 24, height: 24)
+            .padding()
+            .background(Color("ThemeColor"))
+            .foregroundColor(.white)
+            .clipShape(Circle())
+            .shadow(radius: 5)
     }
 }
 
-#Preview {
+#Preview{
     CircularPlusButton()
 }

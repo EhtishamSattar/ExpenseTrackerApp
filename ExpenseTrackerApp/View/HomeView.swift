@@ -1,18 +1,48 @@
-//
-//  HomeView.swift
-//  ExpenseTrackerApp
-//
-//  Created by Mac on 22/08/2024.
-//
-
 import SwiftUI
 
 struct HomeView: View {
+    //    @State private var expenseName: String = ""
+    //    @State private var selectedCategory: String = ""
+    //    @State private var date = Date()
+    var page : String = "Home"
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            VStack(alignment: .center, spacing: 10){
+                ExpenseCardView(
+                    expenseName: "Lunch",
+                    expenseCategory: "Food",
+                    expenseAmount: 15.75,
+                    expenseDateTime: Date()
+                )
+                
+                ExpenseCardView(
+                    expenseName: "Oversixed T-Shirt",
+                    expenseCategory: "Shopping",
+                    expenseAmount: 10.75,
+                    expenseDateTime: Date()
+                )
+                
+            }
+            .padding()
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
+            .navigationTitle("Home")
+            .overlay(
+                NavigationLink(destination: {
+                    AddExpenseView()
+                }, label: {
+                    CircularPlusButton()
+                        .padding()
+                }),
+                alignment: .bottomTrailing // Move alignment here, outside the closure
+            )
+
+
+        }
+        
+        
     }
 }
 
-#Preview {
+#Preview{
     HomeView()
 }
