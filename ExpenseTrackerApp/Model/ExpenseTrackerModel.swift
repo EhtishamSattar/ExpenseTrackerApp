@@ -9,19 +9,22 @@ import Foundation
 
 import Foundation
 
-struct ExpenseTrackerData: Codable {
+struct ExpenseTrackerData: Codable , Hashable {
     var expenses: [Expense]
     var categories: [Category]
 }
 
-struct Expense: Codable {
-    let expenseName: String
-    let expenseCategory: String
-    let expenseDateTime: Date
-    let expenseAmount: Double
-    let expenseIsStarred: Bool
+struct Expense: Codable, Hashable, Identifiable {
+    var id = UUID()  // Unique identifier for each expense
+    var expenseName: String = ""
+    var expenseCategory: String = ""
+    var expenseDateTime: Date = Date()
+    var expenseAmount: String = ""
+    var expenseIsStarred: Bool = false
+    var expenseNotes: String = ""
+
 }
 
-struct Category: Codable {
-    let name: String
+struct Category: Codable , Hashable{
+    var name: String = ""
 }

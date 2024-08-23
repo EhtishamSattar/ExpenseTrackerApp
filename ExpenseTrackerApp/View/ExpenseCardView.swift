@@ -6,38 +6,30 @@
 //
 import SwiftUI
 
-struct ExpenseCardView : View {
-    var expenseName: String
-    var expenseCategory: String
-    var expenseAmount: Double
-    var expenseDateTime: Date
-    
+struct ExpenseCardView: View {
+    @Binding var expense: Expense
+    @ObservedObject var expenseTracker: ExpenseTrackerViewModel
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            
-            HStack{
-                Text("\(expenseCategory)")
+            HStack {
+                Text(expense.expenseCategory)
                     .font(.subheadline)
                     .italic()
                 Spacer()
-                Image(systemName: "star.fill")
-                    .accentColor(.yellow)
+                Image(systemName: expense.expenseIsStarred ? "star.fill" : "star")
                     .foregroundColor(.yellow)
             }
             
-                //.foregroundColor(.secondary)
-            Text(expenseName)
+            Text(expense.expenseName)
                 .font(.headline)
-                //.foregroundColor(.primary)
-            
-            
             
             HStack {
                 Text("Amount:")
                     .font(.subheadline)
                     .fontWeight(.bold)
                 Spacer()
-                Text("$\(String(format: "%.2f", expenseAmount))")
+                Text("$\(expense.expenseAmount)")
                     .font(.subheadline)
             }
             
@@ -46,24 +38,35 @@ struct ExpenseCardView : View {
                     .font(.subheadline)
                     .fontWeight(.bold)
                 Spacer()
-                Text(DateFormatter.localizedString(from: expenseDateTime, dateStyle: .medium, timeStyle: .short))
+                Text(DateFormatter.localizedString(from: expense.expenseDateTime, dateStyle: .medium, timeStyle: .short))
                     .font(.subheadline)
             }
         }
         .padding()
         .foregroundColor(.white)
-        .background(Color("ThemeColor")) // You can set a custom background color
+        .background(Color("ThemeColor"))
         .cornerRadius(10)
         .shadow(radius: 5)
     }
 }
 
 
-#Preview {
-    ExpenseCardView(
-        expenseName: "Lunch",
-        expenseCategory: "Food",
-        expenseAmount: 15.75,
-        expenseDateTime: Date()
-    )
-}
+//#Preview {
+//    ExpenseCardView(
+//        expenseTracker: ExpenseTrackerViewModel(),
+//        expense: Expense(
+//            expenseName: "Groceries",
+//            expenseCategory: "Food",
+//            expenseDateTime: Date(),
+//            expenseAmount: "45.67",
+//            expenseIsStarred: true,
+//            expenseNotes: "Weekly shopping"
+//        )
+//    )
+//}
+
+
+
+//#Preview {
+//    ExpenseCardView(expense: Expense())
+//}

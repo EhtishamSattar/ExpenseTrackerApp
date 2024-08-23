@@ -9,11 +9,12 @@ import SwiftUI
 
 struct AddCategoryView: View {
     @Environment(\.presentationMode) var mode
-    @Binding var categories : [String]
-    @State var category : String = ""
+//    @Binding var categories : [String]
+    @State var category = Category()
+    @ObservedObject var expenseTracker: ExpenseTrackerViewModel
     var body: some View {
         VStack{
-            TextField("Select Category", text: $category)
+            TextField("Select Category", text: $category.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(5)
             HStack{
@@ -25,12 +26,13 @@ struct AddCategoryView: View {
                 .buttonStyle(BorderedButtonStyle())
                 
                 Button  {
-                    categories.append(category)
+                    expenseTracker.categories.append(category)
                     mode.wrappedValue.dismiss()
                 } label: {
                     Text("OK")
                 }
                 .buttonStyle(BorderedButtonStyle())
+                .disabled(category.name.isEmpty ? true : false )
 
 
             }
@@ -41,9 +43,9 @@ struct AddCategoryView: View {
 }
 
 struct AddCategoryView_Previews: PreviewProvider {
-    @State static var categories = ["Food", "Transport", "Shopping"]
+    //@State static var categories = ["Food", "Transport", "Shopping"]
     
     static var previews: some View {
-        AddCategoryView(categories: $categories)
+        AddCategoryView(expenseTracker: ExpenseTrackerViewModel())
     }
 }

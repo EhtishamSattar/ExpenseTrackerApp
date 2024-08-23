@@ -1,18 +1,40 @@
-//
-//  NoExpensesView.swift
-//  ExpenseTrackerApp
-//
-//  Created by Mac on 22/08/2024.
-//
-
 import SwiftUI
 
 struct NoExpensesView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Spacer()
+            
+            // Symbol and message
+            VStack(spacing: 20) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .foregroundColor(.yellow)
+                    .padding()
+                    .background(Color("ThemeColor"))
+                    .clipShape(Circle())
+                    .padding()
+                    .shadow(radius: 10)
+                    .scaleEffect(1.2)
+                    .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: UUID()) // Animation
+
+                Text("No Expenses took place yet")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .padding()
+            }
+            
+            Spacer()
+    
+        }
+        .padding()
     }
 }
 
-#Preview {
-    NoExpensesView()
+struct NoExpensesView_Previews: PreviewProvider {
+    static var previews: some View {
+        NoExpensesView()
+    }
 }

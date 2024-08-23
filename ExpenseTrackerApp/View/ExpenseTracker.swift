@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ExpenseTracker: View {
+
+    @StateObject var expenseTracker : ExpenseTrackerViewModel = ExpenseTrackerViewModel()
     
-    //Setting theme Color for Tabbar Items
+    
     init() {
         let appearance = UITabBarAppearance()
         appearance.stackedLayoutAppearance.selected.iconColor = UIColor(named: "ThemeColor")
@@ -23,12 +25,12 @@ struct ExpenseTracker: View {
         NavigationView{
             
             TabView {
-                HomeView()
+                HomeView(expenseTracker: expenseTracker)
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
                 
-                CategoryView()
+                CategoryView(expenseTracker: expenseTracker)
                     .tabItem {
                         Label("Category", systemImage: "list.bullet")
                         
