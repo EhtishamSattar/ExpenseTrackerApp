@@ -5,7 +5,6 @@ struct NoExpensesView: View {
         VStack {
             Spacer()
             
-            // Symbol and message
             VStack(spacing: 20) {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .resizable()
@@ -17,7 +16,7 @@ struct NoExpensesView: View {
                     .padding()
                     .shadow(radius: 10)
                     .scaleEffect(1.2)
-                    .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: UUID()) // Animation
+                    .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: UUID()) 
 
                 Text("No Expenses took place yet")
                     .font(.title2)

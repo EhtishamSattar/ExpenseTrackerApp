@@ -19,16 +19,16 @@ struct AddExpenseView: View {
             TextField("Expense Name", text: $expenseDetail.expenseName)
                 .padding(5)
                 .background(
-                    RoundedRectangle(cornerRadius: 5) // Use a rounded rectangle as the background
-                        .stroke(Color("ThemeColor"), lineWidth: 1) // Apply the custom border color
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("ThemeColor"), lineWidth: 1)
                 )
                 
             TextField("Expense Amount", text: $expenseDetail.expenseAmount)
                 .foregroundColor(Color.primary)
-                .padding(5)  // Add padding first
+                .padding(5)
                 .background(
-                    RoundedRectangle(cornerRadius: 5) // Use a rounded rectangle as the background
-                        .stroke(Color("ThemeColor"), lineWidth: 1) // Apply the custom border color
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("ThemeColor"), lineWidth: 1)
                 )
                 //.foregroundColor(Color("ThemeColor")) // Set the text color
                 
@@ -39,8 +39,8 @@ struct AddExpenseView: View {
                     .padding(5)
                     .disabled(true)
                     .background(
-                        RoundedRectangle(cornerRadius: 5) // Use a rounded rectangle as the background
-                            .stroke(Color("ThemeColor"), lineWidth: 1) // Apply the custom border color
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color("ThemeColor"), lineWidth: 1)
                     )
                     
                 
@@ -65,8 +65,8 @@ struct AddExpenseView: View {
                 .pickerStyle(MenuPickerStyle())
                 .accentColor(Color("ThemeColor"))
                 .background(
-                    RoundedRectangle(cornerRadius: 5) // Use a rounded rectangle as the background
-                        .stroke(Color("ThemeColor"), lineWidth: 1) // Apply the custom border color
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("ThemeColor"), lineWidth: 1)
                 )
                 
             }
@@ -75,8 +75,8 @@ struct AddExpenseView: View {
             TextEditor(text: $expenseDetail.expenseNotes)
                 //.border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                 .background(
-                    RoundedRectangle(cornerRadius: 5) // Use a rounded rectangle as the background
-                        .stroke(Color("ThemeColor"), lineWidth: 1) // Apply the custom border color
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("ThemeColor"), lineWidth: 1)
                 )
             DatePicker("Time & Date", selection: $expenseDetail.expenseDateTime, displayedComponents: [.date, .hourAndMinute])
             //.padding()
@@ -95,9 +95,9 @@ struct AddExpenseView: View {
             } label: {
                 Text(page == "Home" ? "Save" : "Edit")
                     .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
             }
             //.buttonStyle(BorderedButtonStyle())
-            .frame(maxWidth: .infinity)
             .padding()
             .background(Color("ThemeColor"))
             //.disabled(expenseTracker.checkDataisReady(expense: expenseDetail) ? false : true)

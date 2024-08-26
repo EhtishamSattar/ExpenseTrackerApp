@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExpenseInformationView: View {
-    @Binding var expense: Expense  // Use @Binding to reflect changes in the parent view
+    @Binding var expense: Expense  
     @ObservedObject var expenseTracker: ExpenseTrackerViewModel
     @Binding var reload: Bool
     
@@ -50,11 +50,8 @@ struct ExpenseInformationView: View {
                 Text("Notes:")
                     .fontWeight(.semibold)
                 Text(expense.expenseNotes.isEmpty ? "No notes" : expense.expenseNotes)
-                    .overlay {
-                        Rectangle()
-                            .stroke(style: StrokeStyle())
-                            .frame(width: 650)
-                    }
+                    .italic()
+                    
             }
             
             HStack {

@@ -8,67 +8,21 @@ struct HomeView: View {
     @State private var selectedImageData: Data? = nil
     @State private var savedImageURL: URL? = nil
     
-    @State private var showingDeleteAlert = false
-    @State private var expenseToDeleteEdit: Expense?
-    @State private var navigateToEditView: Expense? = nil
-    @State private var selectedExpense: Expense? = nil
+   
+  //  @State private var selectedExpense: Expense? = nil
+  
     @State var reload : Bool = false
     
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 8) {
-                if expenseTracker.expenses.isEmpty {
-                    NoExpensesView()
-                } else {
-                    List {
-                        ForEach($expenseTracker.expenses, id: \.self) { $expense in
-                            ExpenseCardView(
-                                expense: $expense,
-                                expenseTracker: expenseTracker
-                            )
-                            .onChange(of: expense.expenseIsStarred){ newValue in
-                                print("Home View")
-                            }
-                            .onTapGesture {
-                                selectedExpense = expense
-                            }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                Button("Delete") {
-                                    expenseToDeleteEdit = expense
-                                    showingDeleteAlert.toggle()
-                                }
-                                .tint(.red)
-                                
-                                Button("Edit") {
-                                    navigateToEditView = expense
-                                }
-                                .tint(.green)
-                            }
-                        }
-                    }
-                    .listStyle(PlainListStyle())
-                    .alert(isPresented: $showingDeleteAlert) {
-                        Alert(
-                            title: Text("Confirm Delete"),
-                            message: Text("Are you sure you want to delete this expense?"),
-                            primaryButton: .destructive(Text("Delete")) {
-                                if let expense = expenseToDeleteEdit {
-                                    expenseTracker.deleteExpense(expense: expense)
-                                }
-                            },
-                            secondaryButton: .cancel()
-                        )
-                    }
-                }
+                ExpenseListView(viewModel: expenseTracker)
                 Spacer()
-                Text("Total Expense: \(expenseTracker.calculateTotalExpenseAmount(), specifier: "%.2f")")
+                Text("Total Expense: \(expenseTracker.calculateTotalExpenseAmount(), specifier: "%.2f") Rs")
                     .font(.title3)
+                    .bold()
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
-                
-                
-                
-                Spacer()
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -112,12 +66,12 @@ struct HomeView: View {
             }
             .background(
                 NavigationLink(
-                    destination: AddExpenseView(expenseTracker: expenseTracker, expenseDetail: navigateToEditView ?? Expense(), page: "Edit"),
+                    destination: AddExpenseView(expenseTracker: expenseTracker, expenseDetail: expenseTracker.navigateToEditView ?? Expense(), page: "Edit"),
                     isActive: Binding<Bool>(
-                        get: { navigateToEditView != nil },
+                        get: { expenseTracker.navigateToEditView != nil },
                         set: { isActive in
                             if !isActive {
-                                navigateToEditView = nil
+                                expenseTracker.navigateToEditView = nil
                             }
                         }
                     )
@@ -138,17 +92,17 @@ struct HomeView: View {
                 NavigationLink(
                     destination: ExpenseInformationView(
                         expense: Binding(
-                            get: { selectedExpense ?? Expense() },
-                            set: { selectedExpense = $0 }
+                            get: { expenseTracker.selectedExpense ?? Expense() },
+                            set: { expenseTracker.selectedExpense = $0 }
                         ),
                         expenseTracker: expenseTracker,
                         reload: $reload
                     ),
                     isActive: Binding<Bool>(
-                        get: { selectedExpense != nil },
+                        get: { expenseTracker.selectedExpense != nil },
                         set: { isActive in
                             if !isActive {
-                                selectedExpense = nil
+                                expenseTracker.selectedExpense = nil
                             }
                         }
                     )

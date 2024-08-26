@@ -15,7 +15,7 @@ struct ExpenseTrackerData: Codable , Hashable {
 }
 
 struct Expense: Codable, Hashable, Identifiable {
-    var id = UUID()  // Unique identifier for each expense
+    var id = UUID()  
     var expenseName: String = ""
     var expenseCategory: String = ""
     var expenseDateTime: Date = Date()

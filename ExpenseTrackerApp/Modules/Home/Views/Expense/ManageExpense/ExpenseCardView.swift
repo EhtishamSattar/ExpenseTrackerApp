@@ -29,7 +29,7 @@ struct ExpenseCardView: View {
                     .font(.subheadline)
                     .fontWeight(.bold)
                 Spacer()
-                Text("$\(expense.expenseAmount)")
+                Text("\(expense.expenseAmount) Rs")
                     .font(.subheadline)
             }
             

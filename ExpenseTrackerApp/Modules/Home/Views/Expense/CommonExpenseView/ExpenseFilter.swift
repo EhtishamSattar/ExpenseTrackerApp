@@ -33,7 +33,7 @@ struct FilterScreen: View {
             .navigationTitle("Filter Options")
         }
         .padding(.zero)
-        .navigationViewStyle(StackNavigationViewStyle()) // Ensure no additional padding from the NavigationView style
+        .navigationViewStyle(StackNavigationViewStyle()) 
     }
 }
 
