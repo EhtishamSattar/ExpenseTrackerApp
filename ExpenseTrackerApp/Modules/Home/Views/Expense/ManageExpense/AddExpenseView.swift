@@ -16,71 +16,24 @@ struct AddExpenseView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            TextField("Expense Name", text: $expenseDetail.expenseName)
-                .padding(5)
-                .background(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color("ThemeColor"), lineWidth: 1)
-                )
-                
-            TextField("Expense Amount", text: $expenseDetail.expenseAmount)
-                .foregroundColor(Color.primary)
-                .padding(5)
-                .background(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color("ThemeColor"), lineWidth: 1)
-                )
-                //.foregroundColor(Color("ThemeColor")) // Set the text color
-                
-
-            
+            ExpenseFormTextField(placeholderText : "Expense name",text: $expenseDetail.expenseName)
+            ExpenseFormTextField(placeholderText : "Expense amount",text: $expenseDetail.expenseAmount)
             HStack{
-                TextField("Select Category", text: $expenseDetail.expenseCategory)
-                    .padding(5)
+                ExpenseFormTextField(placeholderText : "Expense category",text: $expenseDetail.expenseCategory)
                     .disabled(true)
-                    .background(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color("ThemeColor"), lineWidth: 1)
-                    )
-                    
-                
                 
                 Spacer()
                 
-                Picker("", selection: $expenseDetail.expenseCategory) {
-                    if expenseTracker.categories.isEmpty {
-                        Image(systemName: "error.fil")
-                    }else{
-                        ForEach(expenseTracker.categories, id: \.self) { category in
-                            
-                            Text(category.name)
-                                .tag(category.name)
-                                .foregroundColor(.black)
-                            
-                        }
-                    }
-                    
-                    
-                }
-                .pickerStyle(MenuPickerStyle())
-                .accentColor(Color("ThemeColor"))
-                .background(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color("ThemeColor"), lineWidth: 1)
-                )
+                PickerView(selectedText : $expenseDetail.expenseCategory, expenseTracker: expenseTracker)
+                    .pickerStyle(MenuPickerStyle())
                 
             }
             
             Text("Take Notes of Expense")
-            TextEditor(text: $expenseDetail.expenseNotes)
-                //.border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-                .background(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color("ThemeColor"), lineWidth: 1)
-                )
-            DatePicker("Time & Date", selection: $expenseDetail.expenseDateTime, displayedComponents: [.date, .hourAndMinute])
-            //.padding()
-                .accentColor(Color("ThemeColor"))
+            
+            NotesTextEditor(text: $expenseDetail.expenseNotes)
+            
+            DatePickerView(placeholder: "Time & Date", date: $expenseDetail.expenseDateTime)
             
                 .navigationTitle(page == "Home" ? "Add Expense" : "Edit Expense")
             
@@ -93,31 +46,19 @@ struct AddExpenseView: View {
                 }
                 
             } label: {
-                Text(page == "Home" ? "Save" : "Edit")
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
+                AddEditButton(page: page)
             }
             //.buttonStyle(BorderedButtonStyle())
-            .padding()
-            .background(Color("ThemeColor"))
-            //.disabled(expenseTracker.checkDataisReady(expense: expenseDetail) ? false : true)
-            
-            
+            .disabled(expenseTracker.checkDataisReady(expense: expenseDetail) ? false : true)
             
         }
         .padding()
         .alert(isPresented: $showingSaveButtonAlert) {
-                                Alert(
-                                    title: Text("Inconsistent Data"),
-                                    message: Text(expenseTracker.alertMessage.isEmpty ?"Please fill all the data?": "\(expenseTracker.alertMessage)")
-//                                    primaryButton: .destructive(Text("Ok")) {
-//                                        if let expense = expenseToDeleteEdit {
-//                                            expenseTracker.deleteExpense(expense: expense)
-//                                        }
-//                                    },
-//                                    secondaryButton: .cancel()
-                                )
-                            }
+            Alert(
+                title: Text("Inconsistent Data"),
+                message: Text(expenseTracker.alertMessage.isEmpty ?"Please fill all the data?": "\(expenseTracker.alertMessage)")
+            )
+        }
         
     }
 }

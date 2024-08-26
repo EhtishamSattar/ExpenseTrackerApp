@@ -24,7 +24,6 @@ class ExpenseTrackerViewModel: ObservableObject {
         loadData()
     }
     
-    // Load data from UserDefaults
     private func loadData() {
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey) {
             let decoder = JSONDecoder()
@@ -38,7 +37,6 @@ class ExpenseTrackerViewModel: ObservableObject {
         }
     }
     
-    // Save data to UserDefaults
     func saveData() {
         let encoder = JSONEncoder()
         let expenseTrackerData = ExpenseTrackerData(expenses: expenses, categories: categories)
@@ -57,27 +55,6 @@ class ExpenseTrackerViewModel: ObservableObject {
             expenses.append(expense)
         }
         saveData()
-    }
-    
-    
-    
-    
-    func addCategory(_ category: Category) {
-        categories.append(category)
-        saveData()
-    }
-    
-    func hasExpenses(for category: Category) -> Bool {
-        return expenses.contains { $0.expenseCategory == category.name }
-    }
-    
-    
-    func deleteCategory(_ category: Category) {
-        if let index = categories.firstIndex(of: category) {
-            categories.remove(at: index)
-            expenses.removeAll { $0.expenseCategory == category.name }
-            saveData()
-        }
     }
     
     

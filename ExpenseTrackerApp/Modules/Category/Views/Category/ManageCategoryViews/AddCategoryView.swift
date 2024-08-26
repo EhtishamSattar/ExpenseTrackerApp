@@ -14,14 +14,14 @@ struct AddCategoryView: View {
     @ObservedObject var expenseTracker: ExpenseTrackerViewModel
     var body: some View {
         VStack{
-            TextField("Select Category", text: $category.name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(5)
+            
+            ExpenseFormTextField(placeholderText: "Select Category", text: $category.name)
             HStack{
                 Button {
                     mode.wrappedValue.dismiss()
                 } label: {
                     Text("Cancel")
+                        .foregroundColor(Color("ThemeColor"))
                 }
                 .buttonStyle(BorderedButtonStyle())
                 
@@ -30,6 +30,7 @@ struct AddCategoryView: View {
                     mode.wrappedValue.dismiss()
                 } label: {
                     Text("OK")
+                        .foregroundColor(Color("ThemeColor"))
                 }
                 .buttonStyle(BorderedButtonStyle())
                 .disabled(category.name.isEmpty ? true : false )
@@ -44,7 +45,6 @@ struct AddCategoryView: View {
 
 struct AddCategoryView_Previews: PreviewProvider {
     //@State static var categories = ["Food", "Transport", "Shopping"]
-    
     static var previews: some View {
         AddCategoryView(expenseTracker: ExpenseTrackerViewModel())
     }

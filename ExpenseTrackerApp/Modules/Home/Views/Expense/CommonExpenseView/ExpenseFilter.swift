@@ -4,13 +4,6 @@ struct FilterScreen: View {
     @ObservedObject var expenseTracker: ExpenseTrackerViewModel
     @Environment(\.presentationMode) var mode
 
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        return formatter
-    }
-
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {  

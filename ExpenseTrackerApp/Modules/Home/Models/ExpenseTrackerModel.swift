@@ -25,6 +25,4 @@ struct Expense: Codable, Hashable, Identifiable {
 
 }
 
-struct Category: Codable , Hashable{
-    var name: String = ""
-}
+
