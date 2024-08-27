@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ExpenseInformationView: View {
     @Binding var expense: Expense  
-//    @ObservedObject var expenseTracker: ExpenseTrackerViewModel
+    //@ObservedObject var expenseTracker: ExpenseTrackerViewModel
     //@Binding var reload: Bool
     
     var body: some View {

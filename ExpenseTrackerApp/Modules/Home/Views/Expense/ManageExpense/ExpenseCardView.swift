@@ -16,7 +16,9 @@ struct ExpenseCardView: View {
                 Text(expense.expenseCategory)
                     .font(.subheadline)
                     .italic()
+                
                 Spacer()
+                
                 Image(systemName: expense.expenseIsStarred ? "star.fill" : "star")
                     .foregroundColor(.yellow)
             }
@@ -50,23 +52,3 @@ struct ExpenseCardView: View {
     }
 }
 
-
-//#Preview {
-//    ExpenseCardView(
-//        expenseTracker: ExpenseTrackerViewModel(),
-//        expense: Expense(
-//            expenseName: "Groceries",
-//            expenseCategory: "Food",
-//            expenseDateTime: Date(),
-//            expenseAmount: "45.67",
-//            expenseIsStarred: true,
-//            expenseNotes: "Weekly shopping"
-//        )
-//    )
-//}
-
-
-
-//#Preview {
-//    ExpenseCardView(expense: Expense())
-//}

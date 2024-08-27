@@ -38,6 +38,7 @@
 		049CCE7E2C7DB2DD001AA1C8 /* FilterPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE7D2C7DB2DD001AA1C8 /* FilterPickerView.swift */; };
 		049CCE812C7DB5C8001AA1C8 /* CategoryDeleteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE802C7DB5C8001AA1C8 /* CategoryDeleteButtonView.swift */; };
 		049CCE842C7DC34E001AA1C8 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE832C7DC34E001AA1C8 /* UserDefaultsManager.swift */; };
+		049CCE862C7DE80B001AA1C8 /* ExpenseDeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE852C7DE80B001AA1C8 /* ExpenseDeleteButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		049CCE7D2C7DB2DD001AA1C8 /* FilterPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPickerView.swift; sourceTree = "<group>"; };
 		049CCE802C7DB5C8001AA1C8 /* CategoryDeleteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDeleteButtonView.swift; sourceTree = "<group>"; };
 		049CCE832C7DC34E001AA1C8 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		049CCE852C7DE80B001AA1C8 /* ExpenseDeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDeleteButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 		049CCE502C7C8D2E001AA1C8 /* Expense */ = {
 			isa = PBXGroup;
 			children = (
+				049CCE872C7DE810001AA1C8 /* ExpenseButtons */,
 				049CCE512C7C8D38001AA1C8 /* CommonExpenseView */,
 				049CCE4F2C7C8D0A001AA1C8 /* ManageExpense */,
 			);
@@ -358,6 +361,14 @@
 			path = UserdefaultsManager;
 			sourceTree = "<group>";
 		};
+		049CCE872C7DE810001AA1C8 /* ExpenseButtons */ = {
+			isa = PBXGroup;
+			children = (
+				049CCE852C7DE80B001AA1C8 /* ExpenseDeleteButton.swift */,
+			);
+			path = ExpenseButtons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -455,6 +466,7 @@
 				049CCE732C7CB1A3001AA1C8 /* DatePickerView.swift in Sources */,
 				049CCE4D2C78D302001AA1C8 /* ImagePicker.swift in Sources */,
 				049CCE3F2C7749E9001AA1C8 /* ExpenseTrackerViewModel.swift in Sources */,
+				049CCE862C7DE80B001AA1C8 /* ExpenseDeleteButton.swift in Sources */,
 				049CCE332C772029001AA1C8 /* CategoryView.swift in Sources */,
 				049CCE712C7CB197001AA1C8 /* CategoryPickerView.swift in Sources */,
 			);

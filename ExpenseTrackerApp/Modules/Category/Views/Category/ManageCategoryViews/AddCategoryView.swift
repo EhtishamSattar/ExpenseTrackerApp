@@ -9,9 +9,8 @@ import SwiftUI
 
 struct AddCategoryView: View {
     @Environment(\.presentationMode) var mode
-//    @Binding var categories : [String]
     @State var category = Category()
-    @ObservedObject var expenseTracker: ExpenseTrackerViewModel
+    @ObservedObject var categoryTracker: CategoryViewModel
     var body: some View {
         VStack{
             
@@ -26,7 +25,7 @@ struct AddCategoryView: View {
                 .buttonStyle(BorderedButtonStyle())
                 
                 Button  {
-                    expenseTracker.categories.append(category)
+                    categoryTracker.addCategory(category)
                     mode.wrappedValue.dismiss()
                 } label: {
                     Text("OK")
@@ -46,6 +45,6 @@ struct AddCategoryView: View {
 struct AddCategoryView_Previews: PreviewProvider {
     //@State static var categories = ["Food", "Transport", "Shopping"]
     static var previews: some View {
-        AddCategoryView(expenseTracker: ExpenseTrackerViewModel())
+        AddCategoryView(categoryTracker: CategoryViewModel(expense: ExpenseTrackerViewModel()))
     }
 }

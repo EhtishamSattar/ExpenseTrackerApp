@@ -7,11 +7,8 @@ struct HomeView: View {
     @State private var selectedImage: UIImage? = nil
     @State private var selectedImageData: Data? = nil
     @State private var savedImageURL: URL? = nil
-    
-   
-  //  @State private var selectedExpense: Expense? = nil
-  
-    @State var reload : Bool = false
+  // @State private var selectedExpense: Expense? = nil
+    //@State var reload : Bool = false
     
     var body: some View {
         NavigationView {

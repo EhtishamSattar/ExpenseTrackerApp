@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct CategoryView: View {
-    //@State private var categories = ["Food", "Transport", "Shopping"] 
-  //  @ObservedObject var expenseTracker: ExpenseTrackerViewModel
+    //1.0 -> @ObservedObject var expenseTracker: ExpenseTrackerViewModel
+    
     @ObservedObject var expenseCategoryViewModel : CategoryViewModel
     
     init(expenseTracker: ExpenseTrackerViewModel) {
-       // self.expenseTracker = expenseTracker
+       //1.1 ->  self.expenseTracker = expenseTracker
         self.expenseCategoryViewModel = CategoryViewModel(expense: expenseTracker)
     }
     
@@ -17,7 +17,7 @@ struct CategoryView: View {
             }
             .overlay(
                 NavigationLink(destination: {
-                    AddCategoryView(expenseTracker: expenseCategoryViewModel.expense)
+                    AddCategoryView(categoryTracker: expenseCategoryViewModel)
                 }, label: {
                     CircularPlusButton()
                         .padding()

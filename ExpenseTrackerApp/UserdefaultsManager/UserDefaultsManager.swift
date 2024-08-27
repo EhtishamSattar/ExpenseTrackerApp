@@ -11,7 +11,7 @@ enum UserDefaultsKeys : String, CaseIterable {
     case userDefaultsKey = "expenseTrackerData"
 }
 
-class UserDefaultsManager{
+class UserDefaultsManager {
 
     //Shared Instance
     static let shared = UserDefaultsManager()
@@ -20,7 +20,7 @@ class UserDefaultsManager{
     private init() { }
     
     
-    func loadData() -> ExpenseTrackerData{
+    func loadData() -> ExpenseTrackerData {
         if let data = UserDefaults.standard.data(forKey: UserDefaultsKeys.userDefaultsKey.rawValue) {
             let decoder = JSONDecoder()
             do {
@@ -30,12 +30,13 @@ class UserDefaultsManager{
                 print("Failed to decode expense tracker data: \(error)")
             }
         }
-        return ExpenseTrackerData()
+        return ExpenseTrackerData() // if there is no data then it will return an Empty Initialized expenseTrackerData
     }
     
     //////////////////////   //////////////////////   //////////////////////   //////////////////////   //////////////////////   //////////////////////   //////////////////////   //////////////////////
    
-    func loadDataSecondWay() -> ExpenseTrackerData?{
+    // Other way to do the above thing
+    func loadDataSecondWay() -> ExpenseTrackerData? {
         if let data = UserDefaults.standard.data(forKey: UserDefaultsKeys.userDefaultsKey.rawValue) {
             let decoder = JSONDecoder()
             do {

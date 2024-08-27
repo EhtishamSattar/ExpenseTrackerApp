@@ -20,6 +20,6 @@ struct DatePickerView: View {
     }
 }
 
-#Preview {
-    DatePickerView(placeholder : "Preview", date : Binding.constant(Date()))
-}
+//#Preview {
+//    DatePickerView(placeholder : "Preview", date : Binding.constant(Date()))
+//}

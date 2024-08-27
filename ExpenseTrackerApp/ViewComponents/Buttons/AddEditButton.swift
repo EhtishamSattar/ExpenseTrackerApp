@@ -11,15 +11,13 @@ struct AddEditButton: View {
     var page = "Home"
     @ObservedObject var expenseTracker : ExpenseTrackerViewModel
     var expense : Expense
-    @Binding var showingSaveButtonAlert : Bool 
+    @Binding var showingSaveButtonAlert : Bool
     @Environment(\.presentationMode) var mode
     
     var body: some View {
-        
         Button {
-            if(!expenseTracker.checkDataisReady(expense: expense)){
-                showingSaveButtonAlert.toggle()
-            }else{
+            showingSaveButtonAlert = expenseTracker.checkDataisReady(expense: expense) ? false : true
+            if !showingSaveButtonAlert {
                 expenseTracker.addExpense(expense)
                 mode.wrappedValue.dismiss()
             }
@@ -31,9 +29,6 @@ struct AddEditButton: View {
                 .frame(width: 380)
                 .background(Color("ThemeColor"))
         }
-        //.buttonStyle(BorderedButtonStyle())
-        .disabled(expenseTracker.checkDataisReady(expense: expense) ? false : true)
-        
     }
 }
 

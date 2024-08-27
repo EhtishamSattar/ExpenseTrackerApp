@@ -28,8 +28,22 @@ class CategoryViewModel : ObservableObject {
     
     
     func deleteCategory(_ category: Category) {
-        expense.deleteExpense(category)
-        selectedCategory = nil
+        if expense.hasExpense(category) {
+            self.selectedCategory = category
+            self.showDeleteCategoryAlert = true
+        }else {
+            
+            if let index = expense.categories.firstIndex(of: category){
+                expense.categories.remove(at: index)
+            }
+            selectedCategory = nil
+        }
+        
+        
     }
     
+    func deleteCategoryWithExpenses() {
+        expense.deleteExpense(self.selectedCategory)
+        selectedCategory = nil
+    }
 }

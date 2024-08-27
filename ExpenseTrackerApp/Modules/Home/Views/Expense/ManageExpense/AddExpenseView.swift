@@ -44,7 +44,7 @@ struct AddExpenseView: View {
         .alert(isPresented: $showingSaveButtonAlert) {
             Alert(
                 title: Text("Inconsistent Data"),
-                message: Text(expenseTracker.alertMessage.isEmpty ?"Please fill all the data?": "\(expenseTracker.alertMessage)")
+                message: Text(expenseTracker.alertMessage.isEmpty ? "Please fill all the data?": "\(expenseTracker.alertMessage)")
             )
         }
         
