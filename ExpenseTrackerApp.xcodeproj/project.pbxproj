@@ -30,10 +30,14 @@
 		049CCE682C7CA31B001AA1C8 /* AddEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE672C7CA31B001AA1C8 /* AddEditButton.swift */; };
 		049CCE6B2C7CA98E001AA1C8 /* ExpenseFormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE6A2C7CA98E001AA1C8 /* ExpenseFormTextField.swift */; };
 		049CCE6E2C7CB07A001AA1C8 /* NotesTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE6D2C7CB07A001AA1C8 /* NotesTextEditor.swift */; };
-		049CCE712C7CB197001AA1C8 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE702C7CB197001AA1C8 /* PickerView.swift */; };
+		049CCE712C7CB197001AA1C8 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE702C7CB197001AA1C8 /* CategoryPickerView.swift */; };
 		049CCE732C7CB1A3001AA1C8 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE722C7CB1A3001AA1C8 /* DatePickerView.swift */; };
 		049CCE752C7CB9E6001AA1C8 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE742C7CB9E6001AA1C8 /* CategoryViewModel.swift */; };
 		049CCE772C7CC935001AA1C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE762C7CC935001AA1C8 /* Category.swift */; };
+		049CCE7C2C7DB016001AA1C8 /* StarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE7B2C7DB016001AA1C8 /* StarButtonView.swift */; };
+		049CCE7E2C7DB2DD001AA1C8 /* FilterPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE7D2C7DB2DD001AA1C8 /* FilterPickerView.swift */; };
+		049CCE812C7DB5C8001AA1C8 /* CategoryDeleteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE802C7DB5C8001AA1C8 /* CategoryDeleteButtonView.swift */; };
+		049CCE842C7DC34E001AA1C8 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CCE832C7DC34E001AA1C8 /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,11 +65,15 @@
 		049CCE672C7CA31B001AA1C8 /* AddEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditButton.swift; sourceTree = "<group>"; };
 		049CCE6A2C7CA98E001AA1C8 /* ExpenseFormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseFormTextField.swift; sourceTree = "<group>"; };
 		049CCE6D2C7CB07A001AA1C8 /* NotesTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTextEditor.swift; sourceTree = "<group>"; };
-		049CCE702C7CB197001AA1C8 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		049CCE702C7CB197001AA1C8 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 		049CCE722C7CB1A3001AA1C8 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		049CCE742C7CB9E6001AA1C8 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		049CCE762C7CC935001AA1C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		049CCE7A2C7CCA92001AA1C8 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		049CCE7B2C7DB016001AA1C8 /* StarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarButtonView.swift; sourceTree = "<group>"; };
+		049CCE7D2C7DB2DD001AA1C8 /* FilterPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPickerView.swift; sourceTree = "<group>"; };
+		049CCE802C7DB5C8001AA1C8 /* CategoryDeleteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDeleteButtonView.swift; sourceTree = "<group>"; };
+		049CCE832C7DC34E001AA1C8 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,7 @@
 		049CCE192C771AAF001AA1C8 /* ExpenseTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
+				049CCE822C7DC338001AA1C8 /* UserdefaultsManager */,
 				049CCE5A2C7C90BC001AA1C8 /* Modules */,
 				049CCE1A2C771AAF001AA1C8 /* ExpenseTrackerAppApp.swift */,
 				049CCE2B2C771B71001AA1C8 /* ExpenseTracker.swift */,
@@ -186,6 +195,7 @@
 		049CCE522C7C8D58001AA1C8 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				049CCE7F2C7DB58D001AA1C8 /* CategoryButtons */,
 				049CCE632C7C9EEB001AA1C8 /* CategoryViews */,
 				049CCE622C7C9EB0001AA1C8 /* ManageCategoryViews */,
 			);
@@ -301,6 +311,7 @@
 				049CCE4A2C78C6F3001AA1C8 /* UploadButton.swift */,
 				049CCE302C772003001AA1C8 /* CircularPlusButton.swift */,
 				049CCE672C7CA31B001AA1C8 /* AddEditButton.swift */,
+				049CCE7B2C7DB016001AA1C8 /* StarButtonView.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -324,10 +335,27 @@
 		049CCE6F2C7CB16A001AA1C8 /* Pickers */ = {
 			isa = PBXGroup;
 			children = (
-				049CCE702C7CB197001AA1C8 /* PickerView.swift */,
+				049CCE702C7CB197001AA1C8 /* CategoryPickerView.swift */,
 				049CCE722C7CB1A3001AA1C8 /* DatePickerView.swift */,
+				049CCE7D2C7DB2DD001AA1C8 /* FilterPickerView.swift */,
 			);
 			path = Pickers;
+			sourceTree = "<group>";
+		};
+		049CCE7F2C7DB58D001AA1C8 /* CategoryButtons */ = {
+			isa = PBXGroup;
+			children = (
+				049CCE802C7DB5C8001AA1C8 /* CategoryDeleteButtonView.swift */,
+			);
+			path = CategoryButtons;
+			sourceTree = "<group>";
+		};
+		049CCE822C7DC338001AA1C8 /* UserdefaultsManager */ = {
+			isa = PBXGroup;
+			children = (
+				049CCE832C7DC34E001AA1C8 /* UserDefaultsManager.swift */,
+			);
+			path = UserdefaultsManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,12 +431,14 @@
 				049CCE432C777654001AA1C8 /* ExpenseFilter.swift in Sources */,
 				049CCE452C7777B3001AA1C8 /* FilterOptions.swift in Sources */,
 				049CCE682C7CA31B001AA1C8 /* AddEditButton.swift in Sources */,
+				049CCE7E2C7DB2DD001AA1C8 /* FilterPickerView.swift in Sources */,
 				049CCE4B2C78C6F3001AA1C8 /* UploadButton.swift in Sources */,
 				049CCE752C7CB9E6001AA1C8 /* CategoryViewModel.swift in Sources */,
 				049CCE312C772003001AA1C8 /* CircularPlusButton.swift in Sources */,
 				049CCE372C772BE2001AA1C8 /* ExpenseCardView.swift in Sources */,
 				049CCE392C773DE2001AA1C8 /* AddCategoryView.swift in Sources */,
 				049CCE2E2C771F84001AA1C8 /* HomeView.swift in Sources */,
+				049CCE812C7DB5C8001AA1C8 /* CategoryDeleteButtonView.swift in Sources */,
 				049CCE472C7879D1001AA1C8 /* ExpenseInformationView.swift in Sources */,
 				049CCE1B2C771AAF001AA1C8 /* ExpenseTrackerAppApp.swift in Sources */,
 				049CCE352C772B0E001AA1C8 /* AddExpenseView.swift in Sources */,
@@ -420,11 +450,13 @@
 				049CCE6B2C7CA98E001AA1C8 /* ExpenseFormTextField.swift in Sources */,
 				049CCE2C2C771B71001AA1C8 /* ExpenseTracker.swift in Sources */,
 				049CCE3D2C774938001AA1C8 /* ExpenseTrackerModel.swift in Sources */,
+				049CCE7C2C7DB016001AA1C8 /* StarButtonView.swift in Sources */,
+				049CCE842C7DC34E001AA1C8 /* UserDefaultsManager.swift in Sources */,
 				049CCE732C7CB1A3001AA1C8 /* DatePickerView.swift in Sources */,
 				049CCE4D2C78D302001AA1C8 /* ImagePicker.swift in Sources */,
 				049CCE3F2C7749E9001AA1C8 /* ExpenseTrackerViewModel.swift in Sources */,
 				049CCE332C772029001AA1C8 /* CategoryView.swift in Sources */,
-				049CCE712C7CB197001AA1C8 /* PickerView.swift in Sources */,
+				049CCE712C7CB197001AA1C8 /* CategoryPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

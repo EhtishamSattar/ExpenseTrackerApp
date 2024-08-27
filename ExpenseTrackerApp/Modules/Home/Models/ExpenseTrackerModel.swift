@@ -12,6 +12,16 @@ import Foundation
 struct ExpenseTrackerData: Codable , Hashable {
     var expenses: [Expense]
     var categories: [Category]
+    
+    init(){
+        self.expenses = []
+        self.categories = []
+    }
+    
+    init(expenses: [Expense], categories: [Category]) {
+        self.expenses = expenses
+        self.categories = categories
+    }
 }
 
 struct Expense: Codable, Hashable, Identifiable {

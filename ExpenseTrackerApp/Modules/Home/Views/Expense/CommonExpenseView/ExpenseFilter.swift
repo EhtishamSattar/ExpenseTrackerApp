@@ -3,22 +3,18 @@ import SwiftUI
 struct FilterScreen: View {
     @ObservedObject var expenseTracker: ExpenseTrackerViewModel
     @Environment(\.presentationMode) var mode
-
+    
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {  
+            VStack(spacing: 0) {
                 Form {
                     Section(header: Text("Select Filter Option")) {
-                        Picker("Filter Options", selection: $expenseTracker.selectedFilter) {
-                            ForEach(FilterOption.allCases) { option in
-                                Text(option.rawValue).tag(option)
+                        FilterPickerView(placeholder: "Filter Options", selectedFilter: $expenseTracker.selectedFilter)
+                            .pickerStyle(SegmentedPickerStyle())
+                            .onChange(of: expenseTracker.selectedFilter) { newValue in
+                                expenseTracker.updateFilter(newValue)
+                                mode.wrappedValue.dismiss()
                             }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .onChange(of: expenseTracker.selectedFilter) { newValue in
-                            expenseTracker.updateFilter(newValue)
-                            mode.wrappedValue.dismiss()
-                        }
                     }
                 }
                 .padding(.zero)
@@ -26,7 +22,7 @@ struct FilterScreen: View {
             .navigationTitle("Filter Options")
         }
         .padding(.zero)
-        .navigationViewStyle(StackNavigationViewStyle()) 
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

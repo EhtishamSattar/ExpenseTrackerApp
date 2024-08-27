@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 class ExpenseTrackerViewModel: ObservableObject {
+    
     @Published var expenses: [Expense] = []
     @Published var categories: [Category] = []
     @Published var selectedFilter: FilterOption = .filter
@@ -17,36 +18,35 @@ class ExpenseTrackerViewModel: ObservableObject {
     @Published var navigateToEditView: Expense? = nil
     
     var alertMessage : String = ""
-    
-    private let userDefaultsKey = "expenseTrackerData"
+    let db = UserDefaultsManager.shared
     
     init() {
-        loadData()
+        fetchDataFromDB()
     }
     
-    private func loadData() {
-        if let data = UserDefaults.standard.data(forKey: userDefaultsKey) {
-            let decoder = JSONDecoder()
-            do {
-                let expenseTrackerData = try decoder.decode(ExpenseTrackerData.self, from: data)
-                self.expenses = expenseTrackerData.expenses
-                self.categories = expenseTrackerData.categories
-            } catch {
-                print("Failed to decode expense tracker data: \(error)")
-            }
+    func fetchDataFromDB(){
+        let expense = db.loadData()
+        self.expenses = expense.expenses
+        self.categories = expense.categories
+    }
+    
+    func hasExpense(_ category  : Category) -> Bool{
+        return self.expenses.contains { $0.expenseCategory == category.name }
+    }
+    
+    func addNewCategory(_ category  : Category){
+        self.categories.append(category)
+        self.db.saveData(expenses: expenses, categories: categories)
+    }
+    
+    func deleteExpense(_ category  : Category){
+        if let index = self.categories.firstIndex(of: category) {
+            self.categories.remove(at: index)
+            self.expenses.removeAll { $0.expenseCategory == category.name }
+            self.db.saveData(expenses: expenses, categories: categories)
         }
     }
     
-    func saveData() {
-        let encoder = JSONEncoder()
-        let expenseTrackerData = ExpenseTrackerData(expenses: expenses, categories: categories)
-        do {
-            let encodedData = try encoder.encode(expenseTrackerData)
-            UserDefaults.standard.set(encodedData, forKey: userDefaultsKey)
-        } catch {
-            print("Failed to encode expense tracker data: \(error)")
-        }
-    }
     
     func addExpense(_ expense: Expense) {
         if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
@@ -54,7 +54,7 @@ class ExpenseTrackerViewModel: ObservableObject {
         } else {
             expenses.append(expense)
         }
-        saveData()
+        self.db.saveData(expenses: expenses, categories: categories)
     }
     
     
@@ -64,7 +64,7 @@ class ExpenseTrackerViewModel: ObservableObject {
         if let index = expenses.firstIndex(of: expense) {
             expenses[index].expenseIsStarred.toggle()
             star = expenses[index].expenseIsStarred
-            saveData()
+            self.db.saveData(expenses: expenses, categories: categories)
             
         }
         return star
@@ -84,7 +84,7 @@ class ExpenseTrackerViewModel: ObservableObject {
             return
         }
         expenses.remove(at: index)
-        saveData()
+        self.db.saveData(expenses: expenses, categories: categories)
     }
     
     
@@ -130,6 +130,4 @@ class ExpenseTrackerViewModel: ObservableObject {
             result + (Double(expense.expenseAmount) ?? 0)
         }
     }
-    
-    
 }

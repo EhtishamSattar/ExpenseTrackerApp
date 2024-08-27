@@ -33,7 +33,7 @@ struct HomeView: View {
                     isImagePickerPresented = true
                 }) {
                     ZStack {
-                            // Button with icon
+                            
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
                                 .scaledToFit()
@@ -43,14 +43,14 @@ struct HomeView: View {
                                 .background(Circle().fill(Color.white))
                                 .shadow(radius: 5)
                             
-                            // Overlay with selected image
+                            
                             if let image = selectedImage {
                                 Image(uiImage: image)
                                     .resizable()
-                                    .scaledToFill() // Adjust as needed
-                                    .frame(width: 35, height: 35) // Ensure this matches the size of the button
-                                    .clipShape(Circle()) // Make sure the image fits the circle shape
-                                    .overlay(Circle().stroke(Color.white, lineWidth: 2)) // Optional: Add a border if needed
+                                    .scaledToFill()
+                                    .frame(width: 35, height: 35)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color.white, lineWidth: 2))
                             }
                         }
                 },
@@ -94,9 +94,7 @@ struct HomeView: View {
                         expense: Binding(
                             get: { expenseTracker.selectedExpense ?? Expense() },
                             set: { expenseTracker.selectedExpense = $0 }
-                        ),
-                        expenseTracker: expenseTracker,
-                        reload: $reload
+                        )
                     ),
                     isActive: Binding<Bool>(
                         get: { expenseTracker.selectedExpense != nil },

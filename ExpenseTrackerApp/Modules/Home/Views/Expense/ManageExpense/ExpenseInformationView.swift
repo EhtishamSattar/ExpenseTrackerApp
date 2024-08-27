@@ -2,19 +2,14 @@ import SwiftUI
 
 struct ExpenseInformationView: View {
     @Binding var expense: Expense  
-    @ObservedObject var expenseTracker: ExpenseTrackerViewModel
-    @Binding var reload: Bool
+//    @ObservedObject var expenseTracker: ExpenseTrackerViewModel
+    //@Binding var reload: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
                 Spacer()
-                Button {
-                    expense.expenseIsStarred.toggle()
-                } label: {
-                    Image(systemName: expense.expenseIsStarred ? "star.fill" : "star")
-                        .foregroundColor(.yellow)
-                }
+                StarButtonView(starStatus:  $expense.expenseIsStarred)
             }
             
             HStack {
@@ -68,3 +63,4 @@ struct ExpenseInformationView: View {
         .background(Color("BackgroundColor").ignoresSafeArea())
     }
 }
+

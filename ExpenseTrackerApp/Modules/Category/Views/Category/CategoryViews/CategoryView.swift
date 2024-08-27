@@ -12,7 +12,7 @@ struct CategoryView: View {
     
     var body: some View {
             NavigationView {
-                CategoryListView(expenseTracker: expenseCategoryViewModel)
+                CategoryListView(categoryTracker: expenseCategoryViewModel)
                 .navigationTitle("Categories")
             }
             .overlay(

@@ -37,19 +37,7 @@ struct AddExpenseView: View {
             
                 .navigationTitle(page == "Home" ? "Add Expense" : "Edit Expense")
             
-            Button {
-                if(!expenseTracker.checkDataisReady(expense: expenseDetail)){
-                    showingSaveButtonAlert.toggle()
-                }else{
-                    expenseTracker.addExpense(expenseDetail)
-                    mode.wrappedValue.dismiss()
-                }
-                
-            } label: {
-                AddEditButton(page: page)
-            }
-            //.buttonStyle(BorderedButtonStyle())
-            .disabled(expenseTracker.checkDataisReady(expense: expenseDetail) ? false : true)
+            AddEditButton(page: page, expenseTracker: expenseTracker, expense: expenseDetail, showingSaveButtonAlert: $showingSaveButtonAlert)
             
         }
         .padding()
