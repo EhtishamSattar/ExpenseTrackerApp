@@ -157,6 +157,7 @@
 		049CCE4E2C7C8CD9001AA1C8 /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				049CCE892C7F0CBD001AA1C8 /* View */,
 				049CCE6F2C7CB16A001AA1C8 /* Pickers */,
 				049CCE6C2C7CB01D001AA1C8 /* ExpenseTextEditor */,
 				049CCE692C7CA93C001AA1C8 /* TextFields */,
@@ -189,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				049CCE422C777654001AA1C8 /* ExpenseFilter.swift */,
-				049CCE402C774ECE001AA1C8 /* NoExpensesView.swift */,
 				049CCE582C7C8EA8001AA1C8 /* ExpenseListView.swift */,
 			);
 			path = CommonExpenseView;
@@ -367,6 +367,14 @@
 				049CCE852C7DE80B001AA1C8 /* ExpenseDeleteButton.swift */,
 			);
 			path = ExpenseButtons;
+			sourceTree = "<group>";
+		};
+		049CCE892C7F0CBD001AA1C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				049CCE402C774ECE001AA1C8 /* NoExpensesView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

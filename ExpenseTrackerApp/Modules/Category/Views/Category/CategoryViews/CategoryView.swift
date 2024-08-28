@@ -12,8 +12,15 @@ struct CategoryView: View {
     
     var body: some View {
             NavigationView {
-                CategoryListView(categoryTracker: expenseCategoryViewModel)
-                .navigationTitle("Categories")
+                if !expenseCategoryViewModel.expense.categories.isEmpty {
+                    CategoryListView(categoryTracker: expenseCategoryViewModel)
+                        .navigationTitle("Categories")
+                }else{
+                    NoExpensesView(message: "No Categories added yet!")
+                        .navigationTitle("Categories")
+                }
+                
+                
             }
             .overlay(
                 NavigationLink(destination: {

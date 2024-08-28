@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ExpenseInformationView: View {
-    @Binding var expense: Expense  
-    //@ObservedObject var expenseTracker: ExpenseTrackerViewModel
+    @Binding var expense: Expense
+    @ObservedObject var expenseTracker: ExpenseTrackerViewModel
     //@Binding var reload: Bool
     
     var body: some View {
@@ -58,8 +58,17 @@ struct ExpenseInformationView: View {
             
             Spacer()
         }
+        .onChange(of: expenseTracker.expenses, perform: { newValue in
+            
+            expense = expenseTracker.findExpense(expense)
+        })
         .padding()
         .navigationTitle("Expense Info")
+        .navigationBarItems(trailing: NavigationLink(destination: {
+            AddExpenseView(expenseTracker: expenseTracker, expenseDetail: expense, page: "Edit")
+        }, label: {
+            Text("Edit")
+        }))
         .background(Color("BackgroundColor").ignoresSafeArea())
     }
 }

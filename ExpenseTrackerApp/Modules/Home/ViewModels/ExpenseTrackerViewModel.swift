@@ -52,6 +52,14 @@ class ExpenseTrackerViewModel: ObservableObject {
         
     }
     
+    func findExpense(_ expense: Expense) -> Expense
+    {
+        if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
+            return expenses[index]
+        }
+        return expense
+        
+    }
     
     func addExpense(_ expense: Expense) {
         if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
@@ -80,6 +88,16 @@ class ExpenseTrackerViewModel: ObservableObject {
             return expenses[index].expenseIsStarred
         }
         return false
+    }
+    func starExpense(expense: Expense,newValue: Expense?) {
+        if newValue?.id == expense.id {
+            if let selExp = newValue {
+                if let index = expenses.firstIndex(of: expense) {
+                    expenses[index] = selExp
+                }
+            }
+            self.db.saveData(expenses: expenses, categories: categories)
+        }
     }
     
     func deleteExpense(expense : Expense?) {
@@ -120,17 +138,16 @@ class ExpenseTrackerViewModel: ObservableObject {
             return false
         }
         
-        guard let _ = Double(expense.expenseAmount), !expense.expenseAmount.isEmpty else {
+        if expense.expenseAmount <= 0 {
             alertMessage = "Please enter a valid amount"
             return false
         }
-        
         return true
     }
     
     func calculateTotalExpenseAmount() -> Double {
         return expenses.reduce(0) { (result, expense) in
-            result + (Double(expense.expenseAmount) ?? 0)
+            result + expense.expenseAmount
         }
     }
 }

@@ -11,7 +11,7 @@ struct ExpenseListView: View {
     
     @ObservedObject var viewModel : ExpenseTrackerViewModel
     @State private var showingDeleteAlert = false
-   
+    
     var body: some View {
         if viewModel.expenses.isEmpty {
             NoExpensesView()
@@ -22,8 +22,18 @@ struct ExpenseListView: View {
                         expense: $expense,
                         expenseTracker: viewModel
                     )
-                    .onChange(of: expense.expenseIsStarred){ newValue in
-                        print("Home View")
+                    .onChange(of: viewModel.selectedExpense){ newValue in
+                        print("Changing SelectedExpense")
+                        
+                        viewModel.starExpense(expense: expense, newValue: newValue)
+//                        if newValue?.id == expense.id {
+//                            if let selExp = newValue {
+//                                expense = selExp
+//                            }
+//                        }
+                        
+                        
+                        
                     }
                     .onTapGesture {
                         viewModel.selectedExpense = expense

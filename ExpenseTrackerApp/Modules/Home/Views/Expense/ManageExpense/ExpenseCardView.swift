@@ -31,12 +31,12 @@ struct ExpenseCardView: View {
                     .font(.subheadline)
                     .fontWeight(.bold)
                 Spacer()
-                Text("\(expense.expenseAmount) Rs")
+                Text("\(expense.expenseAmount, specifier: "%.2f") Rs")
                     .font(.subheadline)
             }
             
             HStack {
-                Text("Date & Time:")
+                Text("Date/Time:")
                     .font(.subheadline)
                     .fontWeight(.bold)
                 Spacer()

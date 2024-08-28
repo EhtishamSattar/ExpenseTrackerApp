@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct NoExpensesView: View {
+    var message : String = "No Expenses took place yet"
     var body: some View {
         VStack {
             Spacer()
@@ -18,7 +19,7 @@ struct NoExpensesView: View {
                     .scaleEffect(1.2)
                     .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: UUID()) 
 
-                Text("No Expenses took place yet")
+                Text("\(message)")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)

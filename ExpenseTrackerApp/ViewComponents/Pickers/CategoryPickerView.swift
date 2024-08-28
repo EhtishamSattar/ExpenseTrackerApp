@@ -10,13 +10,16 @@ import SwiftUI
 struct PickerView: View {
     @Binding var selectedText : String
     @ObservedObject var expenseTracker : ExpenseTrackerViewModel
+    //@Binding var showAddCategoryView : Bool
     var body: some View {
         Picker("", selection: $selectedText) {
             if expenseTracker.categories.isEmpty {
-                Image(systemName: "error.fil")
+//                Image(systemName: "error.fil")
+//                    .foregroundColor(Color("ThemeColor"))
+                //showAddCategoryView.toggle()
+                
             }else{
                 ForEach(expenseTracker.categories, id: \.self) { category in
-                    
                     Text(category.name)
                         .tag(category.name)
                         .foregroundColor(.black)

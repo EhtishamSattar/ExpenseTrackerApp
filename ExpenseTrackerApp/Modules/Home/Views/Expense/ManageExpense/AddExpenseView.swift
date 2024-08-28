@@ -12,20 +12,49 @@ struct AddExpenseView: View {
     @ObservedObject var expenseTracker : ExpenseTrackerViewModel
     @State var expenseDetail : Expense
     @State var showingSaveButtonAlert : Bool = false
+    @State var value : String = ""
+    @State var showAddCategoryView : Bool = false
     var page : String
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            ExpenseFormTextField(placeholderText : "Expense name",text: $expenseDetail.expenseName)
-            ExpenseFormTextField(placeholderText : "Expense amount",text: $expenseDetail.expenseAmount)
+            ExpenseFormTextField(placeholderText : "Expense Name",text: $expenseDetail.expenseName)
+            TextField("Expense amount",text: $value)
+                .padding(5)
+                .background(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("ThemeColor"), lineWidth: 1)
+                )
+                .onChange(of: value) { newValue in
+                    if let amount = Double(newValue) {
+                        expenseDetail.expenseAmount = amount                    }
+                    
+                }
+                .onAppear(
+                    perform: {
+                        value = String(expenseDetail.expenseAmount)
+                    }
+                )
             HStack{
                 ExpenseFormTextField(placeholderText : "Expense category",text: $expenseDetail.expenseCategory)
                     .disabled(true)
                 
-                Spacer()
-                
-                PickerView(selectedText : $expenseDetail.expenseCategory, expenseTracker: expenseTracker)
-                    .pickerStyle(MenuPickerStyle())
+                if !expenseTracker.categories.isEmpty {
+                    Spacer()
+                    PickerView(selectedText : $expenseDetail.expenseCategory, expenseTracker: expenseTracker)
+                        .pickerStyle(MenuPickerStyle())
+                }else {
+                    NavigationLink {
+                        CategoryView(expenseTracker: expenseTracker)
+                    } label: {
+                        Text("Add Category")
+                            .padding(5)
+                            .background(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color("ThemeColor"), lineWidth: 1)
+                            )
+                    }
+                }
                 
             }
             
@@ -33,7 +62,7 @@ struct AddExpenseView: View {
             
             NotesTextEditor(text: $expenseDetail.expenseNotes)
             
-            DatePickerView(placeholder: "Time & Date", date: $expenseDetail.expenseDateTime)
+            DatePickerView(placeholder: "Time/Date", date: $expenseDetail.expenseDateTime)
             
                 .navigationTitle(page == "Home" ? "Add Expense" : "Edit Expense")
             

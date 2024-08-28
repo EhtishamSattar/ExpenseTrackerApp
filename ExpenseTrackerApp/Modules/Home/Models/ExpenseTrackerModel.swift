@@ -29,7 +29,7 @@ struct Expense: Codable, Hashable, Identifiable {
     var expenseName: String = ""
     var expenseCategory: String = ""
     var expenseDateTime: Date = Date()
-    var expenseAmount: String = ""
+    var expenseAmount: Double = 0.0
     var expenseIsStarred: Bool = false
     var expenseNotes: String = ""
 

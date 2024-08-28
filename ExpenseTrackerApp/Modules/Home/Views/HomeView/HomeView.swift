@@ -7,7 +7,7 @@ struct HomeView: View {
     @State private var selectedImage: UIImage? = nil
     @State private var selectedImageData: Data? = nil
     @State private var savedImageURL: URL? = nil
-  // @State private var selectedExpense: Expense? = nil
+  //  @State private var selectedExpense: Expense? = nil
     //@State var reload : Bool = false
     
     var body: some View {
@@ -91,7 +91,7 @@ struct HomeView: View {
                         expense: Binding(
                             get: { expenseTracker.selectedExpense ?? Expense() },
                             set: { expenseTracker.selectedExpense = $0 }
-                        )
+                        ), expenseTracker: expenseTracker
                     ),
                     isActive: Binding<Bool>(
                         get: { expenseTracker.selectedExpense != nil },
