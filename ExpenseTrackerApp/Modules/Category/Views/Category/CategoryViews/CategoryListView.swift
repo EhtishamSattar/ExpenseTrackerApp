@@ -26,9 +26,6 @@ struct CategoryListView: View {
                 message: Text("This category has associated expenses. Are you sure you want to delete it?"),
                 primaryButton: .destructive(Text("Delete")) {
                     categoryTracker.deleteCategoryWithExpenses()
-//                    if let category =  categoryTracker.selectedCategory {
-//                        categoryTracker.deleteCategory(category)
-//                    }
                 },
                 secondaryButton: .cancel()
             )

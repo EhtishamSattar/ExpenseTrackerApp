@@ -43,7 +43,7 @@ class CategoryViewModel : ObservableObject {
     }
     
     func deleteCategoryWithExpenses() {
-        expense.deleteExpense(self.selectedCategory)
+        expense.deleteExpenseOfCategory(self.selectedCategory)
         selectedCategory = nil
     }
 }

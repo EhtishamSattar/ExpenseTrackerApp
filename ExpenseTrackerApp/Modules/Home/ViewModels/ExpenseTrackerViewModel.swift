@@ -40,15 +40,16 @@ class ExpenseTrackerViewModel: ObservableObject {
         self.db.saveData(expenses: expenses, categories: categories)
     }
     
-    func deleteExpense(_ category  : Category?){
+    func deleteExpenseOfCategory(_ category  : Category?){
         if let ctg = category {
             if let index = self.categories.firstIndex(of: ctg) {
                 self.categories.remove(at: index)
                 self.expenses.removeAll { $0.expenseCategory == ctg.name }
                 self.db.saveData(expenses: expenses, categories: categories)
             }
+            //self.db.saveData(expenses: expenses, categories: categories)
         }
-        self.db.saveData(expenses: expenses, categories: categories)
+        
     }
     
     
@@ -69,7 +70,6 @@ class ExpenseTrackerViewModel: ObservableObject {
             expenses[index].expenseIsStarred.toggle()
             star = expenses[index].expenseIsStarred
             self.db.saveData(expenses: expenses, categories: categories)
-            
         }
         return star
         
@@ -81,7 +81,6 @@ class ExpenseTrackerViewModel: ObservableObject {
         }
         return false
     }
-    
     
     func deleteExpense(expense : Expense?) {
         guard let exp = expense, let index = expenses.firstIndex(of: exp) else {
