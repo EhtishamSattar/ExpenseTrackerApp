@@ -2,17 +2,14 @@
 //  FilterOptions.swift
 //  ExpenseTrackerApp
 //
-//  Created by Mac on 22/08/2024.
+//  Created by Mac on 28/08/2024.
 //
 
-import SwiftUI
+import Foundation
 
-enum FilterOption: String, CaseIterable, Identifiable {
-    case filter = "Filter"
-    case aToZ = "A to Z"
-    case zToA = "Z to A"
-    case date = "Date"
-    case category = "Category"
-    
-    var id: String { self.rawValue }
+enum FilterOptions : Hashable {
+    case date
+    case amount
+    case category
+    case none
 }

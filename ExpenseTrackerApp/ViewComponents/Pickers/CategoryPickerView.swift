@@ -12,22 +12,23 @@ struct PickerView: View {
     @ObservedObject var expenseTracker : ExpenseTrackerViewModel
     //@Binding var showAddCategoryView : Bool
     var body: some View {
+        NavigationLink {
+            CategoryView(expenseTracker: expenseTracker)
+        } label: {
+            Text("Add Category")
+                .padding(5)
+                .background(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("ThemeColor"), lineWidth: 1)
+                )
+        }
         Picker("", selection: $selectedText) {
-            if expenseTracker.categories.isEmpty {
-//                Image(systemName: "error.fil")
-//                    .foregroundColor(Color("ThemeColor"))
-                //showAddCategoryView.toggle()
+            ForEach(expenseTracker.categories, id: \.self) { category in
+                Text(category.name)
+                    .tag(category.name)
+                    .foregroundColor(.black)
                 
-            }else{
-                ForEach(expenseTracker.categories, id: \.self) { category in
-                    Text(category.name)
-                        .tag(category.name)
-                        .foregroundColor(.black)
-                    
-                }
             }
-            
-            
         }
         .accentColor(Color("ThemeColor"))
         .background(

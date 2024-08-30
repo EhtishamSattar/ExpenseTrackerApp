@@ -18,8 +18,11 @@ class CategoryViewModel : ObservableObject {
         self.expense = expense
     }
     
-    func addCategory(_ category: Category) {
-        expense.addNewCategory(category)
+    func addCategory(_ category: Category) -> Bool {
+        if expense.addNewCategory(category) {
+            return true
+        }
+        return false
     }
     
     func hasExpenses(for category: Category) -> Bool {

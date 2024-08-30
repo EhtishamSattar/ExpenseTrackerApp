@@ -12,10 +12,17 @@ class ExpenseTrackerViewModel: ObservableObject {
     
     @Published var expenses: [Expense] = []
     @Published var categories: [Category] = []
-    @Published var selectedFilter: FilterOption = .filter
+    @Published var selectedSortOption: SortOption = .none
     @Published var selectedExpense: Expense? = nil
     @Published var expenseToDeleteEdit: Expense?
     @Published var navigateToEditView: Expense? = nil
+    
+    @Published var selectedFilterOption : FilterOptions = .none
+    @Published var selectedCategoryFilter : String = "none"
+    @Published var startDate : Date = Date()
+    @Published var endDate : Date = Date()
+    @Published var minAmount : String = ""
+    @Published var maxAmount : String = ""
     
     
     var alertMessage : String = ""
@@ -23,6 +30,7 @@ class ExpenseTrackerViewModel: ObservableObject {
     
     init() {
         fetchDataFromDB()
+        
     }
     
     func fetchDataFromDB() {
@@ -35,9 +43,19 @@ class ExpenseTrackerViewModel: ObservableObject {
         return self.expenses.contains { $0.expenseCategory == category.name }
     }
     
-    func addNewCategory(_ category  : Category){
-        self.categories.append(category)
-        self.db.saveData(expenses: expenses, categories: categories)
+    func addNewCategory(_ category  : Category) -> Bool {
+        
+        var categoryAdded : Bool = false
+        let hasCategory = categories.contains { cat in
+            return cat == category
+        }
+        
+        if !hasCategory {
+            self.categories.append(category)
+            self.db.saveData(expenses: expenses, categories: categories)
+            categoryAdded = true
+        }
+        return categoryAdded
     }
     
     func deleteExpenseOfCategory(_ category  : Category?){
@@ -89,6 +107,7 @@ class ExpenseTrackerViewModel: ObservableObject {
         }
         return false
     }
+    
     func starExpense(expense: Expense,newValue: Expense?) {
         if newValue?.id == expense.id {
             if let selExp = newValue {
@@ -109,9 +128,9 @@ class ExpenseTrackerViewModel: ObservableObject {
     }
     
     
-    func applyFilter() {
-        switch selectedFilter {
-        case .filter:
+    func applySorting() {
+        switch selectedSortOption {
+        case .none:
             break
         case .aToZ:
             expenses.sort { $0.expenseName < $1.expenseName }
@@ -124,9 +143,85 @@ class ExpenseTrackerViewModel: ObservableObject {
         }
     }
     
-    func updateFilter(_ newFilter: FilterOption) {
-        selectedFilter = newFilter
-        applyFilter()
+    func updateSorting(_ newSortOption: SortOption) {
+        selectedSortOption = newSortOption
+        applySorting()
+    }
+    
+    func applyFiltering(){
+        switch selectedFilterOption {
+        case .none:
+            fetchDataFromDB()
+        case .date:
+            print("In date filter")
+            //getDateRange(startDate: startDate, endDate: endDate)
+            fetchDataFromDB()
+            expenses = getExpensesInDatesRange(start: self.startDate, end: self.endDate)
+        case .category:
+            print("In Category")
+            fetchDataFromDB()
+            if selectedCategoryFilter != "none"{
+                expenses = getExpensesforACategory()
+                print(expenses)
+            }
+        case .amount:
+            print("In amount filter")
+            fetchDataFromDB()
+            expenses = getExpensesInAmountRange()
+        }
+    }
+    
+    func updateFiltering(_ newFilterOption: FilterOptions){
+        selectedFilterOption = newFilterOption
+        applyFiltering()
+    }
+    
+    func getDateRange(startDate: Date, endDate: Date){
+        self.startDate = startDate
+        self.endDate = endDate
+    }
+    
+    func getExpensesforACategory() -> [Expense] {
+        var categoryViseExpenses : [Expense] = []
+        //print(selectedCategoryFilter!)
+        for (_ , exp ) in expenses.enumerated(){
+            print("In loop")
+            if exp.expenseCategory == selectedCategoryFilter {
+                categoryViseExpenses.append(exp)
+            }
+        }
+        //selectedCategoryFilter = nil
+        return categoryViseExpenses
+    }
+    
+    func getExpensesInDatesRange(start: Date , end: Date) -> [Expense]{
+        var expensesInDateRange : [Expense] = []
+        print(start,end)
+        for (_, exp) in expenses.enumerated() {
+            print("In date ranges loop")
+            if exp.expenseDateTime >= start && exp.expenseDateTime <= end {
+                expensesInDateRange.append(exp)
+            }
+            
+        }
+        print(expensesInDateRange)
+        
+        return expensesInDateRange
+    }
+    
+    func getExpensesInAmountRange() -> [Expense] {
+        
+        var expensesInAmountRange : [Expense] = []
+        if let min = Double(minAmount) , let max = Double(maxAmount){
+            for (_ , exp) in expenses.enumerated() {
+                if exp.expenseAmount >= min && exp.expenseAmount <= max {
+                    expensesInAmountRange.append(exp)
+                }
+            }
+        }
+        
+        return expensesInAmountRange
+        
     }
     
     func checkDataisReady(expense: Expense) -> Bool {

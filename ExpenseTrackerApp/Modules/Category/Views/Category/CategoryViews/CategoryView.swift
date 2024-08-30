@@ -12,14 +12,21 @@ struct CategoryView: View {
     
     var body: some View {
             NavigationView {
-                if !expenseCategoryViewModel.expense.categories.isEmpty {
-                    CategoryListView(categoryTracker: expenseCategoryViewModel)
-                        .navigationTitle("Categories")
-                }else{
-                    NoExpensesView(message: "No Categories added yet!")
-                        .navigationTitle("Categories")
+                VStack{
+                    
+                    if !expenseCategoryViewModel.expense.categories.isEmpty {
+                        CategoryListView(categoryTracker: expenseCategoryViewModel)
+                            .navigationTitle("Categories")
+                    }else{
+                        NoExpensesView(message: "No Categories added yet!")
+                            .navigationTitle("Categories")
+                    }
+                    Text("Swipe to delete category")
+                        .font(.subheadline)
+                        .foregroundColor(.red)
+                        .italic()
+                    Spacer()
                 }
-                
                 
             }
             .overlay(

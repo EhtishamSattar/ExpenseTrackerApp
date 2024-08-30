@@ -43,7 +43,8 @@ struct AddExpenseView: View {
                     Spacer()
                     PickerView(selectedText : $expenseDetail.expenseCategory, expenseTracker: expenseTracker)
                         .pickerStyle(MenuPickerStyle())
-                }else {
+                }
+                else {
                     NavigationLink {
                         CategoryView(expenseTracker: expenseTracker)
                     } label: {

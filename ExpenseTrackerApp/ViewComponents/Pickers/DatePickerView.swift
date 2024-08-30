@@ -10,8 +10,9 @@ import SwiftUI
 struct DatePickerView: View {
     var placeholder : String
     @Binding var date : Date
+    
     var body: some View {
-        DatePicker(placeholder, selection: $date, displayedComponents: [.date, .hourAndMinute])
+        DatePicker(placeholder, selection: $date, in: ...Date(),  displayedComponents: [.date, .hourAndMinute])
         .padding()
             .accentColor(Color("ThemeColor"))
 

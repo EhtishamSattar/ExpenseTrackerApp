@@ -59,7 +59,6 @@ struct ExpenseInformationView: View {
             Spacer()
         }
         .onChange(of: expenseTracker.expenses, perform: { newValue in
-            
             expense = expenseTracker.findExpense(expense)
         })
         .padding()
