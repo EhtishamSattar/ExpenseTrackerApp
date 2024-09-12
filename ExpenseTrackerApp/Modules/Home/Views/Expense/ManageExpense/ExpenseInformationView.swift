@@ -3,72 +3,78 @@ import SwiftUI
 struct ExpenseInformationView: View {
     @Binding var expense: Expense
     @ObservedObject var expenseTracker: ExpenseTrackerViewModel
-    //@Binding var reload: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
+        Form {
+            HStack{
+                Text("Star this expense")
+                    .font(.subheadline)
                 Spacer()
                 StarButtonView(starStatus:  $expense.expenseIsStarred)
             }
-            
-            HStack {
-                Text("Name:")
-                    .fontWeight(.semibold)
-                Spacer()
-                Text(expense.expenseName)
+            Section(header: Text("Details").font(.headline)) {
+                HStack {
+                    Text("Name:")
+                        .fontWeight(.semibold)
+                    Spacer()
+                    Text(expense.expenseName)
+                }
+                HStack {
+                    Text("Category:")
+                        .fontWeight(.semibold)
+                    Spacer()
+                    Text(expense.expenseCategory)
+                }
+                HStack {
+                    Text("Date:")
+                        .fontWeight(.semibold)
+                    Spacer()
+                    Text(DateFormatter.localizedString(from: expense.expenseDateTime, dateStyle: .medium, timeStyle: .short))
+                        .font(.subheadline)
+                }
+                HStack {
+                    Text("Amount:")
+                        .fontWeight(.semibold)
+                    Spacer()
+                    Text("$\(expense.expenseAmount, specifier: "%.2f")")
+                }
+                VStack(alignment: .leading) {
+                    Text("Notes:")
+                        .fontWeight(.semibold)
+                    Text(expense.expenseNotes.isEmpty ? "No notes" : expense.expenseNotes)
+                        .italic()
+                }
+                .frame(maxHeight: 200)
+                
+                HStack {
+                    Text("Starred:")
+                        .fontWeight(.semibold)
+                    Spacer()
+                    Text(expense.expenseIsStarred ? "⭐ Yes" : "☆ No")
+                }
             }
-            
-            HStack {
-                Text("Category:")
-                    .fontWeight(.semibold)
-                Spacer()
-                Text(expense.expenseCategory)
-            }
-            
-            HStack {
-                Text("Date:")
-                    .fontWeight(.semibold)
-                Spacer()
-                Text(DateFormatter.localizedString(from: expense.expenseDateTime, dateStyle: .medium, timeStyle: .short))
-                    .font(.subheadline)
-            }
-            
-            HStack {
-                Text("Amount:")
-                    .fontWeight(.semibold)
-                Spacer()
-                Text("$\(expense.expenseAmount)")
-            }
-            
-            VStack(alignment: .leading) {
-                Text("Notes:")
-                    .fontWeight(.semibold)
-                Text(expense.expenseNotes.isEmpty ? "No notes" : expense.expenseNotes)
-                    .italic()
-                    
-            }
-            
-            HStack {
-                Text("Starred:")
-                    .fontWeight(.semibold)
-                Spacer()
-                Text(expense.expenseIsStarred ? "⭐ Yes" : "☆ No")
-            }
-            
-            Spacer()
         }
-        .onChange(of: expenseTracker.expenses, perform: { newValue in
+        .onChange(of: expenseTracker.expenses) { _ in
             expense = expenseTracker.findExpense(expense)
-        })
-        .padding()
+        }
         .navigationTitle("Expense Info")
-        .navigationBarItems(trailing: NavigationLink(destination: {
-            AddExpenseView(expenseTracker: expenseTracker, expenseDetail: expense, page: "Edit")
-        }, label: {
+        .navigationBarItems(trailing: NavigationLink(destination: AddExpenseView(expenseTracker: expenseTracker, expenseDetail: expense, page: "Edit")) {
             Text("Edit")
-        }))
+        })
         .background(Color("BackgroundColor").ignoresSafeArea())
     }
 }
 
+struct EditExpenseView: View {
+    @ObservedObject var expenseTracker: ExpenseTrackerViewModel
+    @Binding var expense: Expense
+    
+    var body: some View {
+        // Implementation for editing the expense
+        Text("Edit Expense View")
+    }
+}
+
+#Preview {
+    ExpenseInformationView(expense: .constant(Expense()), expenseTracker: ExpenseTrackerViewModel())
+}

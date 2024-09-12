@@ -13,9 +13,11 @@ struct ExpenseListView: View {
     @State private var showingDeleteAlert = false
     
     var body: some View {
+        
         if viewModel.expenses.isEmpty {
             NoExpensesView()
         } else {
+
             List {
                 ForEach($viewModel.expenses, id: \.self) { $expense in
                     ExpenseCardView(
@@ -26,13 +28,6 @@ struct ExpenseListView: View {
                         print("Changing SelectedExpense")
                         
                         viewModel.starExpense(expense: expense, newValue: newValue)
-//                        if newValue?.id == expense.id {
-//                            if let selExp = newValue {
-//                                expense = selExp
-//                            }
-//                        }
-                        
-                        
                         
                     }
                     .onTapGesture {

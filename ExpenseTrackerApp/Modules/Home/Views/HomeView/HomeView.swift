@@ -13,6 +13,20 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 8) {
+                if expenseTracker.selectedFilterOption != .none {
+                    Button {
+                        expenseTracker.updateFiltering(.none)
+                    } label: {
+                        Text("Clear Filter")
+                            .font(.caption)
+                            .foregroundColor(Color("ThemeColor"))
+
+                    }
+                    .buttonStyle(BorderedButtonStyle())
+                    .frame(maxWidth: .infinity, maxHeight: 50, alignment: .trailing)
+                    .padding(.horizontal)
+
+                }
                 ExpenseListView(viewModel: expenseTracker)
                 Spacer()
                 Text("Total Expense: \(expenseTracker.calculateTotalExpenseAmount(), specifier: "%.2f") Rs")

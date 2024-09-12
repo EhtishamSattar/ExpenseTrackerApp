@@ -15,6 +15,7 @@ struct CategoryView: View {
                 VStack{
                     
                     if !expenseCategoryViewModel.expense.categories.isEmpty {
+                        
                         CategoryListView(categoryTracker: expenseCategoryViewModel)
                             .navigationTitle("Categories")
                     }else{
@@ -25,6 +26,7 @@ struct CategoryView: View {
                         .font(.subheadline)
                         .foregroundColor(.red)
                         .italic()
+                        .font(Font.headline.weight(.bold))
                     Spacer()
                 }
                 

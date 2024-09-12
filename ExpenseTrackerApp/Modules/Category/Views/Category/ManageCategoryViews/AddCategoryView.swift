@@ -1,59 +1,62 @@
-//
-//  AddCategoryView.swift
-//  ExpenseTrackerApp
-//
-//  Created by Mac on 22/08/2024.
-//
-
 import SwiftUI
 
 struct AddCategoryView: View {
     @Environment(\.presentationMode) var mode
-    @State var category = Category()
+    @State private var category = Category()
     @ObservedObject var categoryTracker: CategoryViewModel
-    @State var showAddCategoryFailAlert : Bool = false
+    @State private var showAddCategoryFailAlert: Bool = false
+
     var body: some View {
-        VStack{
-            Text("Add Category")
-                .font(.title)
-                .bold()
-            ExpenseFormTextField(placeholderText: "Add Category", text: $category.name)
-            HStack{
-                Button {
-                    mode.wrappedValue.dismiss()
-                } label: {
-                    Text("Cancel")
-                        .foregroundColor(Color("ThemeColor"))
+        NavigationView {
+            Form {
+                Section {
+                    ExpenseFormTextField(placeholderText: "Category Name", text: $category.name)
                 }
-                .buttonStyle(BorderedButtonStyle())
-                
-                Button  {
-                    if categoryTracker.addCategory(category) {
-                        mode.wrappedValue.dismiss()
-                    }else {
-                        showAddCategoryFailAlert = true
+
+                Section {
+                    
+                    HStack {
+                        Button(action: {
+                            mode.wrappedValue.dismiss()
+                        }) {
+                            Label("Cancel", systemImage: "xmark.circle")
+                                .foregroundColor(.red)
+                        }
+                        .buttonStyle(.borderless)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            if categoryTracker.addCategory(category) {
+                                mode.wrappedValue.dismiss()
+                            } else {
+                                showAddCategoryFailAlert = true
+                            }
+                        }) {
+                            Label("Add", systemImage: "checkmark.circle")
+                                .foregroundColor(.black)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(category.name.isEmpty)
                     }
                     
-                } label: {
-                    Text("Add")
-                        .foregroundColor(Color("ThemeColor"))
+
+                    
                 }
-                .buttonStyle(BorderedButtonStyle())
-                .disabled(category.name.isEmpty ? true : false )
-                .alert(isPresented: $showAddCategoryFailAlert, content: {
-                    Alert(title: Text("Category Addition failed"), message: Text("This category already existed"))
-                })
-
-
+            }
+            .navigationTitle("Add Category")
+            .navigationBarTitleDisplayMode(.inline)
+            .alert(isPresented: $showAddCategoryFailAlert) {
+                Alert(
+                    title: Text("Category Addition Failed"),
+                    message: Text("This category already exists.")
+                )
             }
         }
-        .padding()
-        
     }
 }
 
 struct AddCategoryView_Previews: PreviewProvider {
-    //@State static var categories = ["Food", "Transport", "Shopping"]
     static var previews: some View {
         AddCategoryView(categoryTracker: CategoryViewModel(expense: ExpenseTrackerViewModel()))
     }
